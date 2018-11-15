@@ -1,4 +1,5 @@
 Spaceship bob;
+Asteroid[] andromeda = new Asteroid[30];
 Star[] nightSky = new Star[200];
 public void setup() 
 {
@@ -7,6 +8,9 @@ public void setup()
   bob = new Spaceship();
   for(int i = 0; i<nightSky.length; i++){
   	nightSky[i] = new Star();
+  }
+  for(int i = 0; i<andromeda.length; i++){
+  	andromeda[i] = new Asteroid();
   }
 }
 public void draw() 
@@ -17,6 +21,11 @@ public void draw()
 	for(int i = 0; i < nightSky.length; i++){
 		nightSky[i].show();
 	}
+	for(int i = 0; i < andromeda.length; i++){
+		andromeda[i].show();
+		andromeda[i].move();
+	}
+
 }
 
 public void keyPressed(){
@@ -26,6 +35,7 @@ public void keyPressed(){
 		bob.setDirectionX(0);
 		bob.setDirectionY(0);
 		bob.setPointDirection((int)(Math.random()*360) + 1);
+		background(155);
 	}
 	if(key == 'w'){
 		bob.accelerate(0.25);
@@ -44,4 +54,3 @@ public void keyPressed(){
 		bob.setDirectionX(0);
 	}
 }
-
