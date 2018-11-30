@@ -1,16 +1,17 @@
 Spaceship bob;
-Asteroid[] andromeda = new Asteroid[30];
+ArrayList <Asteroid> andromeda = new ArrayList <Asteroid>();
 Star[] nightSky = new Star[200];
+int numAsteroids = 30;
 public void setup() 
 {
   size(900,900);
   background(0);
   bob = new Spaceship();
-  for(int i = 0; i<nightSky.length; i++){
+  for(int i = 0; i < nightSky.length; i++){
   	nightSky[i] = new Star();
   }
-  for(int i = 0; i<andromeda.length; i++){
-  	andromeda[i] = new Asteroid();
+  for(int i = 0; i < numAsteroids; i++){
+  	andromeda.add(new Asteroid());
   }
 }
 public void draw() 
@@ -21,9 +22,13 @@ public void draw()
 	for(int i = 0; i < nightSky.length; i++){
 		nightSky[i].show();
 	}
-	for(int i = 0; i < andromeda.length; i++){
-		andromeda[i].show();
-		andromeda[i].move();
+	for(int i = 0; i < andromeda.size(); i++){
+		andromeda.get(i).show();
+		andromeda.get(i).move();
+		float d = dist(bob.getX(), bob.getY(), andromeda.get(i).getX(), andromeda.get(i).getY());
+		if(d < 20){
+			andromeda.remove(i);
+		}
 	}
 
 }
@@ -54,3 +59,4 @@ public void keyPressed(){
 		bob.setDirectionX(0);
 	}
 }
+
